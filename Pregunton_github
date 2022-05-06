@@ -1,0 +1,30 @@
+
+sort -k3 -n columnas.tmp>ordenado.tmp
+
+#estraemos la ultima fila del ordenado
+
+tail -n1 ordenado.tmp>dia_mas_casos.tmp
+
+#anunciamos la respuesta
+# cat es concatenar, imprime en la pantalla lo que esta en la hoja
+echo "Para $pais_de_interes la información es la siguiente:"
+echo "................................"
+
+echo "El día con más casos fue:"
+cut -f2 dia_mas_casos.tmp
+echo "............................"
+
+echo "con los siguientes nuevos casos:"
+cut -f3 dia_mas_casos.tmp
+echo "............................."
+
+echo "fin del comunicado"
+echo "............................"
+
+#borrar archivos intermedios
+
+rm *.tmp
+
+#con este modo todos los archivos .tmp se borran de la carpeta despues de realizar el análisis
+
+
