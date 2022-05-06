@@ -26,18 +26,23 @@ echo "Para $pais_de_interes la información es la siguiente:
 ................................"
 
 
-#Se borro la información de la creación de los archivos
+#Se borro la información de la creación de los archivo
 
-#hacemos un pipeline
-grep $pais_de_interes owid-covid-data.tsv| cut -f3,4,6 | tail -n1>dia_mas_casos.tmp
+#lo hacemos pipeline
+grep $pais_de_interes owid-covid-data.tsv \
+| cut -f3,4,6 \
+| sort -k3 -n \
+| tail -n1 > dia_mas_casos.tmp
 
-#le pedimos que busque el país del archivo owi con l apleca le decimos que saque las columnas 3,4,6 y que nos muestre el último dato
+
+
+#reporte del análisis
 
 echo "El día con más casos fue:"
 cut -f2 dia_mas_casos.tmp
 echo ".........................."
 
-echo "con los siguientes nuevos casos:"
+echo "con un total de pacientes reportados de:"
 cut -f3 dia_mas_casos.tmp
 echo ".........................."
 
