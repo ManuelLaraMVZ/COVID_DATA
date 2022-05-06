@@ -13,52 +13,35 @@
 
 #Primer paso, elegir país
 
-pais_de_interes="France"
+pais_de_interes="USA"
 
 #Enviar mensaje de inicio
-echo "Analizando datos de $pais_de_interes"
-echo "....................................."
+echo "Analizando datos de $pais_de_interes..."
+echo ".........................."
 
-#el símbolo de pesos antes del nombre de la variable, lo llama
-
-#EN la consola poner "bash pregunton.sh"
-
-#filtrar datos del país de interés
-
-grep $pais_de_interes owid-covid-data.tsv>pais.tmp
-
-#se acaba de abrir el archivo "pais.tmp" en la misma carpeta
-
-#poner en consola "head pais.tmp"
-
-#extraer solo columnas de interés
-cut --fields=3,4,6 pais.tmp > columnas.tmp
-
-#el simbolo de > le dice que mete lo que cortaste del archivo a un nuevo archivo
-
-#ordenar los datos por la tercera columna
-
-sort -k3 -n columnas.tmp>ordenado.tmp
-
-#estraemos la ultima fila del ordenado
-
-tail -n1 ordenado.tmp>dia_mas_casos.tmp
 
 #anunciamos la respuesta
 # cat es concatenar, imprime en la pantalla lo que esta en la hoja
-echo "Para $pais_de_interes la información es la siguiente:"
-echo "................................"
+echo "Para $pais_de_interes la información es la siguiente:
+................................"
+
+
+#Se borro la información de la creación de los archivos
+
+#hacemos un pipeline
+grep $pais_de_interes owid-covid-data.tsv| cut -f3,4,6 | tail -n1>dia_mas_casos.tmp
+
+#le pedimos que busque el país del archivo owi con l apleca le decimos que saque las columnas 3,4,6 y que nos muestre el último dato
 
 echo "El día con más casos fue:"
 cut -f2 dia_mas_casos.tmp
-echo "............................"
+echo ".........................."
 
 echo "con los siguientes nuevos casos:"
 cut -f3 dia_mas_casos.tmp
-echo "............................."
+echo ".........................."
 
 echo "fin del comunicado"
-echo "............................"
 
 #borrar archivos intermedios
 
