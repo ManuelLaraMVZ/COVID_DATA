@@ -13,7 +13,11 @@
 
 #Primer paso, elegir país
 
-pais_de_interes="USA"
+pais_de_interes=$1
+
+#al colocar el simbolo $1 podemos automatizar la respuesta
+
+
 
 #Enviar mensaje de inicio
 echo "Analizando datos de $pais_de_interes..."
